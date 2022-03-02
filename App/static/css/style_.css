@@ -1,0 +1,44 @@
+/* Start Configuration  */
+html, body{
+    height: 100%;
+    margin: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* NAVBAR  */
+#btn-nav{
+    width: 90px;
+    float: right;
+    margin-right: 25px;
+}
+
+/* FOOTER  */
+.wrapper{
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+
+#footer,
+.push{
+    height: 50px;
+    font-size: 13px;
+}
+
+/* LOGIN SECTION  */
+#btn-enter{
+    width: 90px;
+}
+
+.head{
+    color: aqua;
+}
+
+#heart{
+    position: absolute;
+    top: 78.5%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-size: 8px;
+}
