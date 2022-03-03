@@ -1,3 +1,4 @@
+from re import L
 from django.shortcuts import render
 
 # My Imports 
@@ -11,7 +12,10 @@ from django.core.paginator import Paginator
 
 # Function to Render the FrontEnd Page
 def frontend(request):
-    return render(request, "frontend.html")
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('backend'))
+    else:
+        return render(request, "frontend.html")
 
 
 # BACKEND SECTION 
@@ -57,3 +61,11 @@ def add_patient(request):
     else:
         return render(request, 'add.html')
 
+
+# Function to Render the Patient's Individual Page 
+@login_required(login_url='login')
+def patient(request, patient_id):
+    patient = Patient.objects.get(id = patient_id)
+    if patient != None:
+        return render(request, 'edit.html', {'patient': patient})
+    

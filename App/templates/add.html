@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 
+<!-- NAVBAR CONTENT ICON + TITLE  -->
+{% block nav-content %}
+<i class="fas fa-user-plus"></i>&nbsp;&nbsp;Add Patient
+{% endblock nav-content %}
+
+<!-- BUTTON IN NAVBAR TO GO BACK ON THE FRONT END PAGE   -->
+{% block btn-nav %}      
+<a href="{% url 'logout' %}" class="btn btn-outline-danger btn-sm border-light text-light" id="btn-nav">Logout</a>
+{% endblock btn-nav %}
 
 <!-- Page Content  -->
 {% block content %}
@@ -8,40 +17,42 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card card-body border-dark text-primary mt-5">
-                <span class="text-center">Fill OUT THE FORM BELOW</span>
+                <span class="text-center">{% block card-title %}Fill OUT THE FORM BELOW{% endblock card-title %}</span>
             </div>
             <form action="/add_patient/" method="POST" autocomplete="off" enctype="multipart/form-data" class="card p-3 border-dark mt-3 mb-5">
                 {% csrf_token %}
 
                 <!-- For Name  -->
                 <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text">Name</span>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="First and Last name">
+                    <span class="input-group-text side-label">Name</span>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="First and Last name" {% block Value-name %}{% endblock Value-name %}>
                 </div>
 
                 <!-- For Phone  -->
                 <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text">Phone</span>
-                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Patient phone">
+                    <span class="input-group-text side-label">Phone</span>
+                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Patient phone" {% block Value-phone %}{% endblock Value-phone %}>
                 </div>
 
                 <!-- For Email  -->
                 <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text">Email</span>
-                    <input type="text" name="email" id="email" class="form-control" placeholder="Patient email">
+                    <span class="input-group-text side-label">Email</span>
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Patient email" {% block Value-email %}{% endblock Value-email %}>
                 </div>
 
                 <!-- For Age  -->
                 <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text">Age</span>
-                    <input type="text" name="age" id="age" class="form-control" placeholder="Patient age">
+                    <span class="input-group-text side-label">Age</span>
+                    <input type="text" name="age" id="age" class="form-control" placeholder="Patient age" {% block Value-age %}{% endblock Value-age %}>
                 </div>
 
                 <!-- For Gender  -->
                 <div class="input-group input-group-sm mb-3">
-                    <label for="gender" class="input-group-text">Gender</label>
+                    <label for="gender" class="input-group-text side-label">Gender</label>
                     <select name="gender" id="gender" class="form-select">
+                        {% block option %}
                         <option value="" hidden>Select the gender</option>
+                        {% endblock option %}
                         <option disabled></option>
                         <option value="">M</option>
                         <option value="">F</option>
@@ -50,12 +61,14 @@
 
                 <!-- For Note  -->
                 <div class="form-group">
-                    <textarea name="note" id="note" rows="7" class="form-control" placeholder="Description is optional...."></textarea>
+                    <textarea name="note" id="note" rows="7" class="form-control" placeholder="Description is optional....">{% block Value-note %}{% endblock Value-note %}</textarea>
                 </div>
 
                 <div class="d-grid gap-2 mt-2">
                     <button type="submit" class="btn btn-primary btn-sm">
+                        {% block Btn-add %}
                         <i class="fas fa-plus"></i>&nbsp;&nbsp; Add
+                        {% endblock Btn-add %}
                     </button>
 
                     <a href="{% url 'backend' %}" class="btn btn-dark btn-sm"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back</a>

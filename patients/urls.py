@@ -17,4 +17,7 @@ urlpatterns = [
 
     # Path to Add a Pateint 
     path('add_patient/', views.add_patient, name = 'add_patient'),
+
+    # Path to Access Patient Individually 
+    path('patient/<str:patient_id>/', views.patient, name = 'patient'),
 ] 
