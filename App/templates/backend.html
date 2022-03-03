@@ -13,5 +13,29 @@
 {% endblock btn-nav %}
 
 {% block content %}
-<h1 class="text-danger text-center">BackEnd Page Content</h1>
+<div class="container">
+
+    <br><br>
+
+    <!-- Add Button and get Username -->
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'add_patient' %}" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus"></i>&nbsp;&nbsp; Add Patient</a>
+        <span>
+            Welcome: <strong><span class="text-primary">{{ user.get_username }}</span></strong>
+        </span>
+    </div>
+
+    <!-- Showing the message  -->
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            let m = "{{ message }}";
+            swal("Perfect !", m, "success");
+        </script>
+        {% endif %}
+    {% endfor %}
+
+
+</div> <!-- END Container -->
 {% endblock %}

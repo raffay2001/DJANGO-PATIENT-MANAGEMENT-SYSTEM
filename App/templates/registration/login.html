@@ -7,7 +7,7 @@
 {% endblock nav-content %}
 
 <!-- BUTTON IN NAVBAR TO GO BACK ON THE FRONT END PAGE   -->
-{% block btn-nav %}      
+{% block btn-nav %}
 <a href="{% url 'frontend' %}" class="btn btn-outline-primary btn-sm border-light text-light" id="btn-nav">Go Back</a>
 {% endblock btn-nav %}
 
@@ -34,13 +34,14 @@
         </form>
     </div>
 
-    <!-- Message from Backend  -->
+    <!-- Messages from Backend  -->
     {% if form.errors %}
-
-
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        swal("Denied !", "Enter your data correctlt.", "error");
+    </script>
     {% endif %}
-    
+
     <!-- Heart Pulse  -->
     <center id="heart">
         <i class="text-primary fas fa-heartbeat fa-10x blink_me"></i>

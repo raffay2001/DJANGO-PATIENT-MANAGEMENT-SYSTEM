@@ -14,4 +14,7 @@ urlpatterns = [
 
     # BACKEND SECTION 
     path('backend/', views.backend, name='backend'),
+
+    # Path to Add a Pateint 
+    path('add_patient/', views.add_patient, name = 'add_patient'),
 ] 
