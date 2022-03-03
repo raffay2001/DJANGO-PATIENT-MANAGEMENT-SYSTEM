@@ -6,6 +6,8 @@ from .models import Patient
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Q
+from django.core.paginator import Paginator
 
 # Function to Render the FrontEnd Page
 def frontend(request):
@@ -16,7 +18,20 @@ def frontend(request):
 # Function to Render the BackEnd Page
 @login_required(login_url='login')
 def backend(request):
-    return render(request, "backend.html")
+    # if its a GET request 
+    if 'q' in request.GET:
+        q = request.GET['q']
+        all_patient_list = Patient.objects.filter(
+            Q(name__icontains=q) | Q(phone__icontains=q) | Q(email__icontains=q) | Q(age__icontains=q) |  Q(gender__icontains=q) |   Q(note__icontains=q) 
+        ).order_by('-created_at')
+    else:
+        all_patient_list = Patient.objects.all().order_by('-created_at')
+    paginator = Paginator(all_patient_list, 3)
+    page = request.GET.get('page')
+    all_patient = paginator.get_page(page)
+
+    return render(request, 'backend.html', {"patients": all_patient})
+
 
 
 

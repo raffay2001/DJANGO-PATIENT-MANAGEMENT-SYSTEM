@@ -25,6 +25,85 @@
         </span>
     </div>
 
+    <!-- Input Search + Button Search + Reset Button  -->
+    <form action="">
+        <!-- The above form will use the method GET  -->
+        <div class="input-group input-group-sm mb-3 mt-4">
+            <input type="text" name="q" class="form-control" placeholder="Search for...">
+            <button class="btn btn-secondary"><i class="fas fa-search"></i></button>
+            <a href="{% url 'backend' %}" class="btn btn-dark" style="margin-left: 2px;"><i class="fas fa-sync-alt"></i></a>
+        </div>
+    </form>
+
+    <!-- Table  -->
+    <center>
+        <table class="table table-bordered table-sm mt-4" style="text-align: center; font-size:14px;">
+            <thead class="table-primary">
+                <tr>
+                    <th style="width: 21%">Name</th>
+                    <th style="width: 15%">Phone</th>
+                    <th style="width: 21%">Email</th>
+                    <th style="width: 8%">Age</th>
+                    <th style="width: 7%">Gender</th>
+                    <th style="width: 18%">Registered</th>
+                    <th style="width: 10%" colspan="2">Action</th>
+                </tr>
+            </thead>
+            <!-- Data From the Bakend  -->
+            {% for patient in patients %}
+            <tr>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.phone }}</td>
+                <td>{{ patient.email }}</td>
+                <td>{{ patient.age }}</td>
+                <td>{{ patient.gender }}</td>
+                <td>{{ patient.created_at | date:'m/d/Y (H:i)' }}</td>
+                <td>
+                    <a href="" class="btn btn-primary" title="Edit Patient">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="" class="btn btn-secondary" title="Delete patient">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+
+    <!-- Pagination  -->
+    <nav class="mt-5">
+        {% if patients.has_other_pages %}
+        <ul class="pagination justify-content-left">
+            {% if patients.has_previous %}
+            <a href="?page=1" class="btn btn-outline-primary mb-4" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3;">First</a>
+            <li class="page-item"><a href="?page={{ patients.previous_page_number }}" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
+
+            {% else %}
+            <li class="page-item disabled"></li>
+            {% endif %}
+
+            {% for i in patients.paginator.page_range %}
+                {% if patients.number == i %}
+                <li class="page-item active"><span class="page-link">{{ i }}<span class="sr-only"></span></span></li>
+                {% else %}
+                <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if patients.has_next %}
+            <li class="page-item"><a href="?page={{ patients.next_page_number }}" class="page-link"><i class="fas fa-angle-double-right"></i></a></li>
+            <a href="?page={{ patients.paginator.num_pages }}" class="btn btn-outline-primary mb-4" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3; border-left: none;">Last</a>
+            {% else %}
+            <li class="page-item disabled"></li>
+            {% endif %}
+
+        </ul>
+        {% endif %}
+    </nav>
+
     <!-- Showing the message  -->
     {% for message in messages %}
         {% if message.tags == 'success' %}
