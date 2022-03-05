@@ -1,15 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 
+<!-- For Title on the Browser Tab  -->
+{% block title %}Add Patient{% endblock title %}
+
 <!-- NAVBAR CONTENT ICON + TITLE  -->
 {% block nav-content %}
 <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Add Patient
 {% endblock nav-content %}
 
+
+<!-- Time  -->
+{% block time %}
+<div class="col-sm">
+    <center>
+        <span id="clock" style="color: #89cff0;"></span>
+    </center>
+</div>
+{% endblock time %}
+
 <!-- BUTTON IN NAVBAR TO GO BACK ON THE FRONT END PAGE   -->
 {% block btn-nav %}      
-<a href="{% url 'logout' %}" class="btn btn-outline-danger btn-sm border-light text-light" id="btn-nav">Logout</a>
+<a class="btn btn-outline-danger btn-sm border-light text-light" id="btn-nav" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
 {% endblock btn-nav %}
+
 
 <!-- Page Content  -->
 {% block content %}
@@ -19,7 +33,8 @@
             <div class="card card-body border-dark text-primary mt-5">
                 <span class="text-center">{% block card-title %}Fill OUT THE FORM BELOW{% endblock card-title %}</span>
             </div>
-            <form action="/add_patient/" method="POST" autocomplete="off" enctype="multipart/form-data" class="card p-3 border-dark mt-3 mb-5">
+            <form {% block action %}action="/add_patient/" {% endblock action %} method="POST" autocomplete="off"
+                enctype="multipart/form-data" class="card p-3 border-dark mt-3 mb-5">
                 {% csrf_token %}
 
                 <!-- For Name  -->
@@ -61,7 +76,8 @@
 
                 <!-- For Note  -->
                 <div class="form-group">
-                    <textarea name="note" id="note" rows="7" class="form-control" placeholder="Description is optional....">{% block Value-note %}{% endblock Value-note %}</textarea>
+                    <textarea name="note" id="note" rows="7" class="form-control"
+                        placeholder="Description is optional....">{% block Value-note %}{% endblock Value-note %}</textarea>
                 </div>
 
                 <div class="d-grid gap-2 mt-2">
@@ -71,7 +87,11 @@
                         {% endblock Btn-add %}
                     </button>
 
-                    <a href="{% url 'backend' %}" class="btn btn-dark btn-sm"><i class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back</a>
+                    <!-- Reset Button Block  -->
+                    {% block Btn-reset %}{% endblock Btn-reset %}
+
+                    <a href="{% url 'backend' %}" class="btn btn-dark btn-sm"><i
+                            class="fas fa-chevron-left"></i>&nbsp;&nbsp;Back</a>
                 </div>
 
             </form>

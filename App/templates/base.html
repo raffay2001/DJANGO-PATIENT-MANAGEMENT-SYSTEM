@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-    <title>Document</title>
+    <title>{% block title %}Mastery Hospital{% endblock title %}</title>
 </head>
 
 <body>
@@ -29,6 +29,7 @@
     <div class="wrapper">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
                 <div class="col-sm">
                     <a style="text-align: center; color: white; margin-left: 25px;" class="navbar-brand flex-grow-1">
                         {% block nav-content %}
@@ -36,14 +37,22 @@
                         {% endblock nav-content %}
                     </a>
                 </div>
+
+                <!-- Time ======= ( ROOT ) ======= -->
+                {% block time %}{% endblock time %}
+
                 <div class="col-sm">
                     {% block btn-nav %}
                     <a href="{% url 'backend' %}" class="btn btn-outline-info btn-sm border-light" id="btn-nav">Login</a>
                     {% endblock btn-nav %}
                 </div>
+
             </nav>
         </header>
 
+
+        
+  
         
         <!--========= Block Content (ROOT) =========-->
         {% block content %}{% endblock content %}
@@ -61,6 +70,30 @@
             <a href="#" target="_blank" style="color: #0dcaf0; text-decoration: none;">Django Mastery</a>
         </div>
     </footer>
+
+
+     
+    <!-- Modal (Logout Confirmation) -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <span class="text-danger"><i class="fas fa-sign-out-alt fa-3x mt-4"></i></span>
+                    <div class="mt-4 mb-4 text-danger">Are you sure you want to exit the system</div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                <a href="{% url 'logout' %}" type="button" class="btn btn-outline-danger btn-sm" style="text-decoration: none;">Logout</a>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+
 
 
 

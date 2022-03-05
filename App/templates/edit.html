@@ -1,19 +1,30 @@
 {% extends 'add.html' %}
 
+
+<!-- For Title on the Browser Tab  -->
+{% block title %}Edit Patient{% endblock title %}
+
 <!-- For Navbar  -->
 {% block nav-content %}
 <i class="fas fa-user-edit"></i>&nbsp;&nbsp; {{ patient.name }}
 {% endblock nav-content %}
 
+<!-- Time  -->
+{% block time %}
+<div class="col-sm">
+    <center>
+        <span id="clock" style="color: #89cff0;"></span>
+    </center>
+</div>
+{% endblock time %}
 
 <!-- For Title  -->
-{% block card-title %}Registered at: <span class="text-dark">{{ patient.created_at | date:'m/d/Y (H:i)' }}</span>{% endblock card-title %}
+{% block card-title %}
+Registered at: <span class="text-dark">{{ patient.created_at | date:'m/d/Y (H:i)' }}</span>
+{% endblock card-title %}
 
-<!-- For Save Btn  -->
-{% block Btn-add %}
-<i class="fas fa-hdd"></i>&nbsp;&nbsp; Save
-{% endblock Btn-add %}
-
+<!-- For action attribute of the form  -->
+{% block action %}action="/edit_patient/{{ patient.id }}/"{% endblock action %}
 
 <!-- All <input> Extended -->
 <!-- For Name  -->
@@ -29,9 +40,22 @@
 {% block Value-age %} value = {{ patient.age }} {% endblock Value-age %}
 
 <!-- For Gender  -->
-{% block option %} 
+{% block option %}
 <option style="background-color: #d3d3d3; color: #007bff;">{{ patient.gender }}</option>
 {% endblock option %}
 
 <!-- For Note  -->
 {% block Value-note %}{{ patient.note }}{% endblock Value-note %}
+
+
+<!-- For Save Btn  -->
+{% block Btn-add %}
+<i class="fas fa-hdd"></i>&nbsp;&nbsp; Save
+{% endblock Btn-add %}
+
+<!-- Reset Button Block  -->
+{% block Btn-reset %}
+<button type="reset" class="btn btn-secondary btn-sm">
+    <i class="fas fa-sync-alt"></i>&nbsp;&nbsp;Reset
+</button>
+{% endblock Btn-reset %}
