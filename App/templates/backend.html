@@ -20,9 +20,9 @@
 {% endblock time %}
 
 <!-- BUTTON IN NAVBAR TO GO BACK ON THE FRONT END PAGE   -->
-{% block btn-nav %}      
-<a class="btn btn-outline-danger btn-sm border-light text-light" id="btn-nav" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
-{% endblock btn-nav %}
+    {% block btn-nav %}      
+    <a class="btn btn-outline-danger btn-sm border-light text-light" id="btn-nav" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
+    {% endblock btn-nav %}
 
 {% block content %}
 <div class="container">
@@ -76,14 +76,45 @@
                     </a>
                 </td>
                 <td>
-                    <a href="{% url 'delete_patient' patient.id %}" class="btn btn-secondary" title="Delete patient">
+                    <a class="btn btn-secondary" title="Delete patient" data-bs-toggle="modal" data-bs-target="#deleteModal{{ patient.pk }}">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </td>
             </tr>
+            <!-- Modal (Delete Confirmation)-->
+                <div class="modal fade" id="deleteModal{{ patient.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp; Delete Patient</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center text-danger">
+                                <i class="fas fa-times-circle fa-5x mb-4 mt-2"></i>
+                            </div>
+                            <div class="text-center text-danger">
+                                <span>DO YOU WANT TO DELETE THIS PATIENT ???</span>
+                                <div class="text-dark mt-3 mb-2">Patient: <strong>{{ patient.name }}</strong></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                        <a href="{% url 'delete_patient' patient.id %}"  type="button" class="btn btn-outline-danger btn-sm">Delete</a >
+                        </div>
+                    </div>
+                    </div>
+                </div>
             {% endfor %}
         </table>
     </center>
+
+
+    
+  
+
+
+
 
     <!-- Pagination  -->
     <nav class="mt-5">
@@ -127,11 +158,12 @@
         {% endif %}
     {% endfor %}
 
+    <!--If no patient has been found then show this span-->
+    <span style="font-size: 1.5rem;" class="text-danger fw-bold text-center" id="no-data"></span>
 
 </div> <!-- END Container -->
 
-<!--If no patient has been found then show this span-->
-<span class="text-danger" id="no-data"></span>
+
 
 
 {% endblock %}

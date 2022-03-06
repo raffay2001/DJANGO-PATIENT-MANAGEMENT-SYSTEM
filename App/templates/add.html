@@ -33,14 +33,14 @@
             <div class="card card-body border-dark text-primary mt-5">
                 <span class="text-center">{% block card-title %}Fill OUT THE FORM BELOW{% endblock card-title %}</span>
             </div>
-            <form {% block action %}action="/add_patient/" {% endblock action %} method="POST" autocomplete="off"
+            <form {% block action %}action="/add_patient/"{% endblock action %} method="POST" autocomplete="off"
                 enctype="multipart/form-data" class="card p-3 border-dark mt-3 mb-5">
                 {% csrf_token %}
 
                 <!-- For Name  -->
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text side-label">Name</span>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="First and Last name" {% block Value-name %}{% endblock Value-name %}>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="First and Last name" {% block Value-name %}{% endblock Value-name %} maxlength="40" style="text-transform: capitalize;">
                 </div>
 
                 <!-- For Phone  -->
@@ -52,13 +52,13 @@
                 <!-- For Email  -->
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text side-label">Email</span>
-                    <input type="text" name="email" id="email" class="form-control" placeholder="Patient email" {% block Value-email %}{% endblock Value-email %}>
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Patient email" {% block Value-email %}{% endblock Value-email %} maxlength="40">
                 </div>
 
                 <!-- For Age  -->
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text side-label">Age</span>
-                    <input type="text" name="age" id="age" class="form-control" placeholder="Patient age" {% block Value-age %}{% endblock Value-age %}>
+                    <input type="text" name="age" id="age" class="form-control" placeholder="Patient age" {% block Value-age %}{% endblock Value-age %} >
                 </div>
 
                 <!-- For Gender  -->
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="d-grid gap-2 mt-2">
-                    <button type="submit" class="btn btn-primary btn-sm">
+                    <button id="btn-add" type="submit" class="btn btn-primary btn-sm">
                         {% block Btn-add %}
                         <i class="fas fa-plus"></i>&nbsp;&nbsp; Add
                         {% endblock Btn-add %}
@@ -99,3 +99,4 @@
     </div>
 </div>
 {% endblock content %}
+   

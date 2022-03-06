@@ -59,6 +59,7 @@ def add_patient(request):
             messages.success(request, "Patient Added Successfully !")
             # Redirecting the user to the backend page 
             return HttpResponseRedirect(reverse('backend'))
+        
     
     # if its a GET request
     else:
