@@ -3,7 +3,7 @@ html, body{
     height: 100%;
     margin: 0;
     max-width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 /* NAVBAR  */
@@ -23,6 +23,13 @@ html, body{
 .push{
     height: 50px;
     font-size: 13px;
+}
+
+/* BASE  */
+#nav-content{
+    text-align: center;
+    color: #fff;
+    margin-left: 25px;
 }
 
 /* LOGIN SECTION  */
@@ -47,6 +54,11 @@ html, body{
 /* BACKEND  */
 .side-label{
     width: 75px;
+}
+
+
+#first, #last{
+    width: 60px;
 }
 
 
@@ -93,3 +105,162 @@ html, body{
 }
 
 
+/* RESPONSIVE MODE --> RESOLUTION FOR TABLET (1024 px) */
+
+@media(max-width: 1024px){
+    /* TABLE  */
+    .table thead{
+        display: none;
+    }
+    .table, .table tbody, .table tr, .table td{
+        display: block;
+        width: 100%;
+    }
+    .table tr{
+        margin-bottom: 15px;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+    .table td{
+        text-align: right;
+        padding-left: 35%;
+        position: relative;
+        border: 1px solid transparent;
+    }
+    .table td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+    .table > thead > tr:first-child{
+        display: none;
+        margin-top: 5px;
+    }
+    #responsive-border{
+        border: 1px solid #a9a9a9;
+    }
+    #top-table {
+        background-color: #cfe2ff;
+        color: black;
+        font-weight: bold;
+    }
+
+    #btn-nav{
+        width: 75px;
+    }
+
+    #footer{
+        font-size: 12px;
+    }
+
+    #heart{
+    top: 80%;
+    }
+}
+
+
+/* RESPONSIVE MODE --> RESOLUTION FOR TABLET (500 px) */
+
+@media(max-width: 500px){
+    #heart{
+        top: 90%;
+        font-size: 5px;
+    }
+
+    #all-rights{
+        display: none;
+    }
+
+    #footer{
+        font-size: 10px;
+    }
+
+    #btn-nav{
+        width: 65px;
+        font-size: 12px;
+        margin-right: 15px;
+    }
+
+    #nav-content{
+        font-size: 15px;
+        margin-left: 15px;
+    }
+
+    #btn-enter{
+        width: 100%;
+        border-radius: 30px;
+    }
+
+    .txt-sm{
+        font-size: 12px;
+    }
+
+    .icon-width{
+        font-size: 12px;
+    }
+
+    .title-login{
+        font-size: 12px;
+    }
+
+    #clock{
+        display: none;
+    }
+
+    .welcome{
+        font-size: 12px;
+    }
+
+
+    #add-patient{
+        font-size: 12px;
+    }
+
+    .btn-action{
+        width: 35px;
+        font-size: 12px;
+    }
+
+    #pagination, #first, #last{
+        font-size: 12px;
+    }
+
+    #first, #last{
+        width: 20px;
+    }
+
+    #name, #phone, #email, #age, #gender{
+        font-size: 12px;
+    }
+
+    .modal-title{
+        font-size: 14px;
+    }
+
+    /* .swal-text{
+        font-size: 14px;
+    }
+
+    .swal-title{
+        font-size: 18px;
+    }
+
+    .swal-button{
+        padding: 5px 15px;
+        font-size: 12px;
+    }
+
+    .swal-icon--success{
+        padding: 1px 1px;
+    }
+
+    .swal-icon--success__line{
+        font-size: 12px;
+    } */
+
+
+}

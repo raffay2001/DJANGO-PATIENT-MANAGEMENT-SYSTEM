@@ -47,7 +47,7 @@ def backend(request):
 def add_patient(request):
     # if its a POST request 
     if request.method == 'POST':
-        if request.POST.get('name') and request.POST.get('phone') and request.POST.get('email') and request.POST.get('age') and request.POST.get('gender') or request.POST.get('note'):
+        if request.POST.get('name') and request.POST.get('phone') and request.POST.get('email') and request.POST.get('age') and request.POST.get('gender'):
             patient = Patient()
             patient.name = request.POST.get('name')
             patient.phone = request.POST.get('phone')
@@ -78,11 +78,11 @@ def patient(request, patient_id):
 # Function to Edit the Patient's Info
 @cache_control(no_cache = True, must_validate = True, no_store = True)
 @login_required(login_url='login')
-def edit_patient(request, patient_id):
+def edit_patient(request):
     # if its a POST request 
     if request.method == 'POST':
-        # patient = Patient.objects.get( pk = request.POST.get('id') )
-        patient = Patient.objects.get( pk = patient_id )
+        patient = Patient.objects.get( pk = request.POST.get('id') )
+        # patient = Patient.objects.get( pk = patient_id )
         if patient != None:
             patient.name = request.POST.get('name')
             patient.phone = request.POST.get('phone')

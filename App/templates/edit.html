@@ -25,7 +25,7 @@ Registered at: <span class="text-dark">{{ patient.created_at | date:'m/d/Y (H:i)
 {% endblock card-title %}
 
 <!-- For action attribute of the form  -->
-{% block action %}action="/edit_patient/{{ patient.id }}/"{% endblock action %}
+{% block action %}action="/edit_patient/"{% endblock action %}
 
 <!-- All <input> Extended -->
 <!-- For Name  -->
@@ -47,6 +47,11 @@ Registered at: <span class="text-dark">{{ patient.created_at | date:'m/d/Y (H:i)
 
 <!-- For Note  -->
 {% block Value-note %}{{ patient.note }}{% endblock Value-note %}
+
+<!-- ID Hidden-->
+{% block Id-hidden %}
+<input type="hidden" value="{{ patient.id }}" name="id">
+{% endblock Id-hidden %}
 
 
 <!-- For Save Btn  -->

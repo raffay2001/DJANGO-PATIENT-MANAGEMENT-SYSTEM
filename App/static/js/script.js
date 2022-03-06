@@ -99,13 +99,62 @@ $(document).ready(function() {
 });
 
 
-$(document).ready(function() {
-    $('name').keyup( function() {
-        var name = $('#name').val();
-        if (name.split(' ').length == 3){
-            swal('Oopsss !', 'Gender field cannot be empty', 'info');
-            $('#name').val('');
+$(document).ready(function(){
+    $('name').keyup( function(){
+    var name = $('#name').val();
+    if (name.split(' ').length === 3){
+        swal('Oopsss !', 'Only Name and Last Name', 'info');
+        $('#name').val('');
+        return false;
+    }
+});
+});
+
+$('#name').keyup(function(){
+    var txt = $(this).val();
+    $(this).val(txt.replace(/^(.)|\s(.)/g, function($1){
+        return $1.toUpperCase();
+    }));
+});
+
+
+$(document).ready(function(){
+    $('#phone').inputmask("(99) 99999-9999", {"onicomplete": function(){
+        swal('Oopsss !', 'incomplete phone. Please review !', 'info');
+        $('#phone').val('');
+        return false;
+    }
+    });
+});
+
+
+$(document).ready(function(){
+    $('#email').keyup(function(){
+        this.value = this.value.toLowerCase();
+    });
+});
+
+
+$(document).ready(function(){
+    $('#age').keyup(function(){
+        var age = $('#age').val();
+        if (age > 100){
+            swal('Denied !', 'The maximum value is 100 years old.', 'error');
+            $('#age').val('');
             return false;
         }
     });
+});
+
+$('#age').keyup(function(){
+   if (!/^[0-9]*$/.test(this.value)) {
+       this.value = this.value.split(/[^0-9]/).join('');
+   }
+});
+
+
+$('#age').on("input", function(){
+    if (/^0/.test(this.value)){
+        this.value = this.value.replace(/^0/, "");
+    }
 });
